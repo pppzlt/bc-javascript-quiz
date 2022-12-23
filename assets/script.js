@@ -65,7 +65,7 @@ var questions = [
 // var question = Object.keys(questions);
 
 var timer;
-var timeLimit = 1000;
+var timeLimit = 100;
 var countdown;
 var score = 0;
 var isCorrect = false;
@@ -74,22 +74,28 @@ var isCorrect = false;
 function setTimeText() {
     timerElement.textContent = countdown;
 }
+
 //timer starts
 function timerStart() {
     countdown = timeLimit;
     setTimeText();
-    setInterval(() => {
-        countdown--;
-        setTimeText();
+    timer = setInterval(() => {
         // if answers wrong, then....do reduce amount in countdown
-
-        //if timer turns 0, game over
-        if (countdown === 0) {
-            //do something
+        if (countdown <= 0) {
+            //clear timer
+            countdown = 0;
+            setTimeText();
+            clearInterval(timer);
+            //go to score page
+            scorePage();
+            //prevent from showing negative time;
             return;
         }
-    }, 1000)
+        countdown--;
+        setTimeText();
 
+    }, 1000)
+    //if timer turns 0, game over
 }
 
 //add new element and put text inside of the box
@@ -121,6 +127,11 @@ function aEL(element, index) {
         if (index + 1 === questions.length) {
             //Show score and ask the user to leave a initial.
             scorePage();
+            //At the same time stop the timer
+            clearInterval(timer);
+            countdown = 0;
+            setTimeText();
+
         }
         else {   //iterate through the rest questions.
             q_box.innerHTML = '';
@@ -139,31 +150,35 @@ function checkWin(answer, index) {
         score++;
 
         //render 'Correct' on screen!
+        r_box.innerHTML = '';
         result.innerHTML = 'Correct';
         r_box.appendChild(result);
         setTimeout(() => {
             r_box.innerHTML = '';
-        }, 500)
+        }, 1000);
 
     } else {
         isCorrect = false;
+        r_box.innerHTML = '';
         result.innerHTML = 'Wrong'
         //update the timer
-
-        // TODO: has to check countdown to not be below zero
         countdown -= 10;
+        //  has to check countdown to not be below zero(done in the timerStart function)
+
         //render 'Wrong' on screen!
         r_box.appendChild(result);
         setTimeout(() => {
             r_box.innerHTML = '';
-        }, 500)
+        }, 1000);
 
     }
 }
 function scorePage() {
     q_box.innerHTML = '';
     var pAllDone = document.createElement('h2');
+    pAllDone.className = 'result_h2';
     var p1 = document.createElement('p');
+    p1.className = 'result_p';
     var form_initial = document.createElement('form');
     var label_initial = document.createElement('label');
     var input_initial = document.createElement('input');
@@ -180,11 +195,30 @@ function scorePage() {
     q_box.append(pAllDone, p1, form_initial);
     form_initial.append(label_initial, input_initial, btn_initial);
     btn_initial.addEventListener('click', (e) => {
-        //TODO: GO TO HIGHSCORE PAGE, ALSO, ADD THE INITIAL AND SCORE DATA TO LOCAL STORAGE;
+        // GO TO HIGHSCORE PAGE, ALSO, UPDATE THE INITIAL AND SCORE DATA TO LOCAL STORAGE;
         e.preventDefault();
-        window.location.href='./highscores.html';
+        updateScore(input_initial.value, score);
+        window.location.href = './highscores.html';
     })
+
 }
+
+function updateScore(initial, score) {
+    /* BELOW IS TO STORE EVERY SCORE */
+    // localStorage.setItem(initial, score);
+    /* BELOW IS TO UPDATE A NEW SCORE. */
+    if (localStorage.getItem(initial) === null) {
+        localStorage.setItem(initial, score);
+    } else {
+        let localScore = localStorage.getItem(initial);
+        if (parseInt(localScore) < score) {
+            localStorage.setItem(initial, score);
+        } else {
+            return;
+        }
+    }
+}
+
 //cleans main content and add questions and options
 function setQestionBox() {
     q_box.innerHTML = '';
@@ -194,7 +228,9 @@ function setQestionBox() {
 
 
 btn.addEventListener('click', () => {
-    // timerStart();
-    // setQestionBox();
-    scorePage();
+    timerStart();
+    setQestionBox();
+    //reset score;
+    //in this case not necessary reset score.
+    score = 0;
 })

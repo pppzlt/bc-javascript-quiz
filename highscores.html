@@ -5,11 +5,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hishscores</title>
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            background-color: bisque;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 4rem;
+        }
+
+        header {
+            height: 5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        main {
+            text-align: center;
+            margin: 2rem 10%;
+        }
+
+        ol {
+            text-align: left;
+            padding-left: 0;
+            font-size: 3rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        li {
+            margin: 3px 10rem;
+            background-color: gray;
+            border-radius: 10px;
+            list-style: none;
+            padding: 0.2rem 2rem;
+        }
+
+        .btn_container {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+        }
+
+        .btn {
+            background-color: aqua;
+        }
+
+    </style>
 </head>
 
 <body>
-
+    <header></header>
+    <main>
+        <h2>Highscores</h2>
+        <ol></ol>
+        <div class="btn_container">
+            <button class='btn' id="goback">Go Back</button><button class='btn' id="clear">Clear History</button>
+        </div>
+    </main>
+    <script src="./assets/highscores.js"></script>
 </body>
 
 </html>
