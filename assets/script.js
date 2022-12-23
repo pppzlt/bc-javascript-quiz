@@ -118,12 +118,14 @@ function aEL(element, index) {
         checkWin(answer, index);
 
         // check if all questions runout.
-
-
-        //iterate through the rest questions.
-        q_box.innerHTML = '';
-        addElement(index + 1);
-
+        if (index + 1 === questions.length) {
+            //Show score and ask the user to leave a initial.
+            scorePage();
+        }
+        else {   //iterate through the rest questions.
+            q_box.innerHTML = '';
+            addElement(index + 1);
+        }
     })
 }
 
@@ -147,6 +149,8 @@ function checkWin(answer, index) {
         isCorrect = false;
         result.innerHTML = 'Wrong'
         //update the timer
+
+        // TODO: has to check countdown to not be below zero
         countdown -= 10;
         //render 'Wrong' on screen!
         r_box.appendChild(result);
@@ -156,7 +160,31 @@ function checkWin(answer, index) {
 
     }
 }
-
+function scorePage() {
+    q_box.innerHTML = '';
+    var pAllDone = document.createElement('h2');
+    var p1 = document.createElement('p');
+    var form_initial = document.createElement('form');
+    var label_initial = document.createElement('label');
+    var input_initial = document.createElement('input');
+    var btn_initial = document.createElement('button');
+    label_initial.setAttribute('for', 'initial');
+    input_initial.setAttribute('type', 'text');
+    input_initial.setAttribute('name', 'initial');
+    input_initial.setAttribute('value', '');
+    input_initial.setAttribute('required', 'true');
+    pAllDone.textContent = 'All Done!'
+    p1.textContent = `Your final score is ${score}`;
+    label_initial.textContent = 'Enter initials:';
+    btn_initial.textContent = 'Submit';
+    q_box.append(pAllDone, p1, form_initial);
+    form_initial.append(label_initial, input_initial, btn_initial);
+    btn_initial.addEventListener('click', (e) => {
+        //TODO: GO TO HIGHSCORE PAGE, ALSO, ADD THE INITIAL AND SCORE DATA TO LOCAL STORAGE;
+        e.preventDefault();
+        window.location.href='./highscores.html';
+    })
+}
 //cleans main content and add questions and options
 function setQestionBox() {
     q_box.innerHTML = '';
@@ -166,6 +194,7 @@ function setQestionBox() {
 
 
 btn.addEventListener('click', () => {
-    timerStart();
-    setQestionBox();
+    // timerStart();
+    // setQestionBox();
+    scorePage();
 })

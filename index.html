@@ -9,6 +9,7 @@
         html {
             font-size: 62.5%;
         }
+
         body {
             background-color: bisque;
             font-family: 'Times New Roman', Times, serif;
@@ -24,14 +25,17 @@
             text-align: center;
             margin: 2rem 10%;
         }
+
         button {
             font-size: 4rem;
         }
+
         ul {
             text-align: left;
-            padding-left:0;
-            font-size:3rem;
+            padding-left: 0;
+            font-size: 3rem;
         }
+
         li {
             margin: 3px 0px;
             border: 2px solid red;
@@ -39,11 +43,13 @@
             border-radius: 10px;
             list-style: none;
         }
+
         li:hover {
-            border-color:blue;
+            border-color: blue;
             background-color: salmon;
-            cursor:pointer;
+            cursor: pointer;
         }
+
         .result p {
             border-top-style: solid;
             border-top-color: gray;
@@ -52,6 +58,17 @@
             font-size: 3rem;
             color: orchid;
             text-align: left;
+        }
+
+        h2,
+        p,
+        form
+         {
+            text-align: left;
+            font-size: 3rem;
+        }
+        form button {
+            font-size:2rem;
         }
     </style>
 </head>
@@ -63,10 +80,11 @@
     </header>
     <main>
         <div class="question">
-        <h2>Coding Quiz Challenge</h2>
-        <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers
-            will penalize your score/time by ten seconds!</p>
-        <button class="btn">Start Quiz</button>
+            <h2>Coding Quiz Challenge</h2>
+            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
+                answers
+                will penalize your score/time by ten seconds!</p>
+            <button class="btn">Start Quiz</button>
         </div>
         <div class="result"></div>
     </main>
