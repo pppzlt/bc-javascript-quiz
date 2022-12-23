@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <style>
+        html {
+            font-size: 62.5%;
+        }
         body {
             background-color: bisque;
             font-family: 'Times New Roman', Times, serif;
-            font-size: 2rem;
+            font-size: 4rem;
         }
 
         header {
@@ -19,18 +22,16 @@
 
         main {
             text-align: center;
-            margin: 5rem 10%;
+            margin: 2rem 10%;
         }
         button {
-            font-size: 2rem;
-            ;
+            font-size: 4rem;
         }
         ul {
             text-align: left;
             padding-left:0;
-            font-size:1.5rem;
+            font-size:3rem;
         }
-
         li {
             margin: 3px 0px;
             border: 2px solid red;
@@ -43,6 +44,15 @@
             background-color: salmon;
             cursor:pointer;
         }
+        .result p {
+            border-top-style: solid;
+            border-top-color: gray;
+            /* background-color: ivory; */
+            font-style: italic;
+            font-size: 3rem;
+            color: orchid;
+            text-align: left;
+        }
     </style>
 </head>
 
@@ -52,10 +62,13 @@
         <div>Time: <span id="time">0</span></div>
     </header>
     <main>
+        <div class="question">
         <h2>Coding Quiz Challenge</h2>
         <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers
             will penalize your score/time by ten seconds!</p>
         <button class="btn">Start Quiz</button>
+        </div>
+        <div class="result"></div>
     </main>
     <script src="./assets/script.js"></script>
 </body>

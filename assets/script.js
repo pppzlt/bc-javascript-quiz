@@ -1,6 +1,7 @@
 
 var timerElement = document.querySelector('#time');
-var main = document.querySelector('main');
+var q_box = document.querySelector('.question');
+var r_box = document.querySelector('.result');
 var btn = document.querySelector('.btn');
 
 
@@ -102,47 +103,69 @@ function addElement(index) {
         newLi.textContent = questions[index].op[i];
         newUl.appendChild(newLi);
     }
-    main.append(newP, newUl);
+    q_box.append(newP, newUl);
     //add eventlistener on li
     document.querySelectorAll('li').forEach((li) => {
-        aEL(li,index)
+        aEL(li, index)
     })
 }
 
 //attach eventlistenr on options
-function aEL(element,index) {
+function aEL(element, index) {
     element.addEventListener('click', () => {
         var answer = element.textContent;
         //check if answer is right;
-        checkWin(answer, index)
-        
+        checkWin(answer, index);
+
+        // check if all questions runout.
+
+
+        //iterate through the rest questions.
+        q_box.innerHTML = '';
+        addElement(index + 1);
+
     })
 }
 
 //check if each question is true.
 function checkWin(answer, index) {
+    let result = document.createElement('p');
     if (answer === questions[index].key) {
         isCorrect = true;
-        console.log(isCorrect)
+
+        //update score
+        score++;
+
         //render 'Correct' on screen!
+        result.innerHTML = 'Correct';
+        r_box.appendChild(result);
+        setTimeout(() => {
+            r_box.innerHTML = '';
+        }, 500)
 
     } else {
         isCorrect = false;
-        console.log(isCorrect)
+        result.innerHTML = 'Wrong'
+        //update the timer
+        countdown -= 10;
         //render 'Wrong' on screen!
+        r_box.appendChild(result);
+        setTimeout(() => {
+            r_box.innerHTML = '';
+        }, 500)
 
     }
 }
 
 //cleans main content and add questions and options
-function setMain() {
-    main.innerHTML = '';
-    //add the the i th question
-    addElement(1);
+function setQestionBox() {
+    q_box.innerHTML = '';
+    //add the the first th question
+    addElement(0);
 }
 
 
 btn.addEventListener('click', () => {
     timerStart();
-    setMain();
+    setQestionBox();
 })
