@@ -14,7 +14,7 @@ if (localStorage.length !== 0) {
 }
 
 btngb.addEventListener('click', () => {
-    window.location.href = './index.html';
+    window.location.href = './';
 })
 
 btncl.addEventListener('click', () => {
