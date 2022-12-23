@@ -102,6 +102,7 @@ function timerStart() {
 //index means the ith question in the questions array
 function addElement(index) {
     var newP = document.createElement('p');
+    newP.className = 'newq';
     var newUl = document.createElement('ul');
     newP.textContent = questions[index].q;
     for (let i = 0; i < questions[index].op.length; i++) {
