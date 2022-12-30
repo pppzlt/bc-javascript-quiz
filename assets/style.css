@@ -1,0 +1,85 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: bisque;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 4rem;
+}
+
+header {
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    text-align: center;
+    margin: 2rem 30rem;
+}
+
+button {
+    font-size: 4rem;
+}
+
+.newq {
+    text-align: left;
+}
+
+ul {
+    text-align: left;
+    padding-left: 0;
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+li {
+    margin: 3px 0rem;
+    border: 2px solid red;
+    background-color: gray;
+    border-radius: 10px;
+    list-style: none;
+    padding: 0.2rem 2rem;
+}
+
+li:hover {
+    border-color: blue;
+    background-color: salmon;
+    cursor: pointer;
+}
+
+.result p {
+    border-top-style: solid;
+    border-top-color: gray;
+    /* background-color: ivory; */
+    font-style: italic;
+    font-size: 3rem;
+    color: orchid;
+    text-align: left;
+}
+
+.result_h2,
+.result_p,
+form {
+    text-align: left;
+    font-size: 3rem;
+}
+
+.result_p {
+    background-color: tan;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+form button {
+    font-size: 2rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
