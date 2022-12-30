@@ -3,7 +3,6 @@ var ol = document.querySelector('ol');
 var btngb = document.querySelector('#goback');
 var btncl = document.querySelector('#clear');
 
-// ol.textContent = '';
 
 if (localStorage.length !== 0) {
     for (let i = 0; i < localStorage.length; i++) {

@@ -1,11 +1,11 @@
-
+//define DOM variables
 var timerElement = document.querySelector('#time');
 var q_box = document.querySelector('.question');
 var r_box = document.querySelector('.result');
 var btn = document.querySelector('.btn');
 
 
-
+//define questions in an array
 var questions = [
     {
         q: 'Inside which HTML element do we put the JavaScript?',
@@ -62,45 +62,47 @@ var questions = [
     }
 
 ];
-// var question = Object.keys(questions);
 
+//define some more variables
 var timer;
 var timeLimit = 100;
 var countdown;
 var score = 0;
 var isCorrect = false;
 
-//give time box a number
+//give time DOM a number
 function setTimeText() {
     timerElement.textContent = countdown;
 }
 
 //timer starts
 function timerStart() {
+    //initialize timer
     countdown = timeLimit;
     setTimeText();
+    //set interval
     timer = setInterval(() => {
         // if answers wrong, then....do reduce amount in countdown
-        if (countdown <= 0) {
-            //clear timer
+        if (countdown <= 0) {//if timer turns 0, game over
+            //prevent from showing negative time;clear timer
             countdown = 0;
             setTimeText();
             clearInterval(timer);
             //go to score page
             scorePage();
-            //prevent from showing negative time;
             return;
         }
         countdown--;
         setTimeText();
 
     }, 1000)
-    //if timer turns 0, game over
+    
 }
 
 //add new element and put text inside of the box
 //index means the ith question in the questions array
 function addElement(index) {
+    //add question and options below;
     var newP = document.createElement('p');
     newP.className = 'newq';
     var newUl = document.createElement('ul');
@@ -174,6 +176,7 @@ function checkWin(answer, index) {
 
     }
 }
+//add score page
 function scorePage() {
     q_box.innerHTML = '';
     var pAllDone = document.createElement('h2');
@@ -199,6 +202,7 @@ function scorePage() {
         // GO TO HIGHSCORE PAGE, ALSO, UPDATE THE INITIAL AND SCORE DATA TO LOCAL STORAGE;
         e.preventDefault();
         updateScore(input_initial.value, score);
+        //performs like a link
         window.location.href = './highscores.html';
     })
 
@@ -206,7 +210,7 @@ function scorePage() {
 
 function updateScore(initial, score) {
     /* BELOW IS TO STORE EVERY SCORE */
-    // localStorage.setItem(initial, score);
+    // localStorage.setItem(initial, score);//this is wrong, no duplicate keys in key value pair;
     /* BELOW IS TO UPDATE A NEW SCORE. */
     if (localStorage.getItem(initial) === null) {
         localStorage.setItem(initial, score);
@@ -220,12 +224,6 @@ function updateScore(initial, score) {
     }
 }
 
-//cleans main content and add questions and options
-function setQestionBox() {
-    q_box.innerHTML = '';
-    //add the the first th question
-    addElement(0);
-}
 
 
 btn.addEventListener('click', () => {
@@ -235,3 +233,11 @@ btn.addEventListener('click', () => {
     //in this case not necessary reset score.
     score = 0;
 })
+
+
+//cleans main content and add questions and options
+function setQestionBox() {
+    q_box.innerHTML = '';
+    //add the the first question
+    addElement(0);
+}
