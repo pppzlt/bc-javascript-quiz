@@ -17,7 +17,7 @@
 ## Demo
  <details>
   <summary>Demo picture(click to show)</summary>
-<img src="./assets/img/Screenshot.jpg" alt="demo">
+<img src="./assets/img/screenshot.jpg" alt="demo">
 </details>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
